@@ -22,12 +22,14 @@ function updateData() {
   model.themes.splice(index, 1, sampleData);
   model.sampleData = {};
   model.isEditing = false;
+  model.editIndex = null;
   updateView();
 }
 
 function cancelUpdate() {
   model.isEditing = false;
-  model.themes.splice(model.index, 1, model.originalTheme);
+
+  model.themes.splice(model.editIndex, 1, model.originalTheme);
   model.sampleData = {};
   updateView();
 }
@@ -42,7 +44,7 @@ function addData() {
     return;
   console.log(model.sampleData);
   let copyTheme = JSON.parse(JSON.stringify(model.sampleData));
-  model.sampleData = {};
+  //model.sampleData = {};
   model.themes.unshift(copyTheme);
   updateView();
 }
